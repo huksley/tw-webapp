@@ -19,15 +19,14 @@ def twsearch():
         return error_response('Please provide a query.')
 
     try:
-        result = search(q)
+        result = search('Elon Musk')
         return jsonify(result)
     except Exception as err:
         return error_response(f'Error searching: {err}')
 
 
 def error_response(message):
-    response = jsonify([{
+    response = jsonify({
         'message': message,
-    }])
-    
-    return response, 400
+    })
+    return response, 500
