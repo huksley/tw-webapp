@@ -25,6 +25,8 @@ def twsearch():
     """Search Twitter for a query."""
     q = request.args.get('q')
     limit = request.args.get('limit') or 10
+    if limit is str:
+        limit = int(limit)
     if not q:
         return error_response('Please provide a query.')
 
