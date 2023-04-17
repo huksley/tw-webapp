@@ -2,6 +2,6 @@
   "name": "tw-webapp.js",
   "scripts": {
     "venv": "python3 -m venv venv; source venv/bin/activate && pip install -r requirements.txt",
-    "dev": "source venv/bin/activate && flask --debug run"
+    "dev": "source venv/bin/activate && flask --debug --app app/main run"
   }
 }
