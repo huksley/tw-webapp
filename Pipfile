@@ -1,0 +1,12 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+ 
+[packages]
+flask="2.2.2"
+flask_cors="*"
+twitter-api-client="0.6.5"
+ 
+[requires]
+python_version = "3.11"
