@@ -1,4 +1,3 @@
-import re
 from flask import Flask, request, jsonify
 from twitter.search import search
 from flask_cors import CORS
