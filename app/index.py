@@ -1,6 +1,10 @@
 from flask import Flask, request, jsonify
-from twitter.search import search
+from twitter.search import Search
 from flask_cors import CORS
+from os import environ
+
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -30,7 +34,13 @@ def twsearch():
         return error_response('Please provide a query.')
 
     try:
-        result = search(q, limit=limit, latest=True)
+        email = request.args.get('email') or environ.get('TWITTER_EMAIL')
+        username = request.args.get('username') or environ.get('TWITTER_USERNAME')
+        password = request.args.get('password') or environ.get('TWITTER_PASSWORD')
+        # log username
+        print("Logging in as " + username)
+        search = Search(email, username, password)
+        result = search.run(q, limit=limit, latest=True)
         if (len(result) == 0):
             return jsonify([])
         else:
