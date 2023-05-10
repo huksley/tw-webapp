@@ -24,14 +24,14 @@ def assoc_to_values(dict):
 def twsearch():
     """Search Twitter for a query."""
     q = request.args.get('q')
-    limit = request.args.get('limit') or 10
+    limit = request.args.get('limit') or 100
     if limit is str:
         limit = int(limit)
     if not q:
         return error_response('Please provide a query.')
 
     try:
-        result = search(q, limit=limit)
+        result = search(q, limit=limit, latest=True)
         if (len(result) == 0):
             return jsonify([])
         else:
